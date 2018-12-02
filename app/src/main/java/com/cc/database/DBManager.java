@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Random;
 
 
 public class DBManager
@@ -53,7 +54,7 @@ public class DBManager
     }
 
 
-    //私有方法, 函数返回值
+    //打开数据库, 私有方法, 函数返回值
     private SQLiteDatabase openDatabase(String dbfile)
     {
         try {
@@ -75,11 +76,13 @@ public class DBManager
 
             SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(dbfile,null);
             return db;
-
-        } catch (FileNotFoundException e) {
+        }
+        catch (FileNotFoundException e)
+        {
             Log.e("Database", "File not found");
             e.printStackTrace();
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             Log.e("Database", "IO exception");
             e.printStackTrace();
         }
@@ -88,11 +91,18 @@ public class DBManager
 
 
 
-    public Cursor findDatabase(String command)
+    public Cursor findDatabase(String command_find)
     {
         //查找数据
-        return ( database.rawQuery(command, null) );
+        return ( database.rawQuery(command_find, null) );
     }
+
+    public void updateDatabase(String command_update)
+    {
+        database.execSQL(command_update);
+        return;
+    }
+
 
     public void closeDatabase()
     {
@@ -100,6 +110,30 @@ public class DBManager
     }
 }
 
+
+
+//尝试封装新类
+/*
+class data
+{
+    String command;
+
+    public data()
+    {
+        DBManager Helper;
+        Helper = new DBManager(this);
+        Helper.openDatabase();
+    }
+
+    public Cursor getdata()
+    {
+
+        command = "SELECT * FROM WordList";
+        return( Helper.findDatabase(command));
+
+    }
+}
+*/
 
 
 

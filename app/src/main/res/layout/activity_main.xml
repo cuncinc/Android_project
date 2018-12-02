@@ -12,56 +12,44 @@
     tools:context="com.cc.database.MainActivity">
 
 
-    <LinearLayout
-        android:id="@+id/test"
-        android:layout_width="match_parent"
-        android:divider="@color/colorPrimaryDark"
-        android:orientation="vertical"
-        android:showDividers="middle"
-        android:dividerPadding="10dp"
-        android:longClickable="true"
-        android:clickable="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_height="wrap_content">
-
-
-        <TextView
-            android:id="@+id/textview_word"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="word is here"
-            tools:text="word is here"
-            android:fontFamily="sans-serif-smallcaps"
-            android:typeface="monospace"
-            android:textSize="24sp"
-            android:lineSpacingExtra="10sp"
-            android:textAlignment="center"
-            android:textColor="?android:attr/textColorHighlightInverse"
-            android:layout_marginTop="95dp"
-            android:layout_below="@+id/test"
+            android:orientation="vertical"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_weight="1"
-            android:textStyle="normal|bold"/>
+            >
 
-        <Button
-            android:id="@+id/button_renshi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="创建数据库"
-            android:layout_above="@+id/textview_word"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
 
-        <Button
-            android:id="@+id/button_find"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="查找数据"
-            />
+                <Button
+                    android:id="@+id/button_find"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_add"
+                    />
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/textview_word"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textSize="26sp"/>
+
+                <TextView
+                    android:id="@+id/textview_phonetic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:id="@+id/textview_definition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textSize="18sp"/>
+
+        </LinearLayout>
 
 
 </RelativeLayout>
