@@ -11,11 +11,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import com.loopeer.cardstack.CardStackView;
+
+import java.util.Arrays;
 import java.util.Random;
 
 
@@ -25,13 +30,19 @@ import java.util.Random;
 * 必应词典api：  http://xtk.azurewebsites.net/BingDictService.aspx?Word=welcome
 *               http://xtk.azurewebsites.net/BingDictService.aspx?Word=想要的单词
 *               https://github.com/jokermonn/-Api/blob/master/BingDic.md
+*               https://zhuanlan.zhihu.com/p/22421123
+*
+*
+*卡片堆叠效果     https://www.ctolib.com/article/compares/258
 * */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
     public DBManager dbHelper;
     private Button B_add;
-    Random random = new Random();
-    int random_num;
+    private Button B_list;
+    public Random random = new Random();
+    public int random_num;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -41,15 +52,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //绑定按钮
         B_add = (Button) findViewById(R.id.button_find);
+        B_list = (Button) findViewById(R.id.button_list);
 
 
         //设置监听器
         B_add.setOnClickListener(this);
+        B_list.setOnClickListener(this);
 
 
         dbHelper = new DBManager(this);
         //首次执行导入.db文件
         dbHelper.openDatabase();
+
+        /*
+        WebView webView = (WebView) findViewById(R.id.web_view);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setWebViewClient(new WebViewClient());
+        webView.loadUrl("https://songchun.farbox.com");
+        */
 
     }
 
@@ -65,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView tv_word = (TextView)findViewById(R.id.textview_word);
         TextView tv_phonetic = (TextView)findViewById(R.id.textview_phonetic);
         TextView tv_definition = (TextView)findViewById(R.id.textview_definition);
+        //mTestStackAdapter = new TestStackAdapter(this);
 
         switch (v.getId())
         {
@@ -93,6 +114,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
             }
+
+            case R.id.button_list:
+            {
+                Intent intent = new Intent(MainActivity.this, WordList.class);
+                startActivity(intent);
+            }
+
             default:
                 break;
         }
