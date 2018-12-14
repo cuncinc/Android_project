@@ -42,6 +42,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button B_list;
     public Random random = new Random();
     public int random_num;
+    public String word;
+    public String command_find;    //数据库查询命令
+    public String command_update;
+
+    public static Cursor cursor;   //操作数据库的游标
+
+    //mTestStackAdapter = new TestStackAdapter(this);
 
 
     @Override
@@ -76,27 +83,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v)
     {
-
-        String word;
-        String command_find;    //数据库查询命令
-        String command_update;
-
-        Cursor cursor;   //操作数据库的游标
         TextView tv_word = (TextView)findViewById(R.id.textview_word);
         TextView tv_phonetic = (TextView)findViewById(R.id.textview_phonetic);
         TextView tv_definition = (TextView)findViewById(R.id.textview_definition);
-        //mTestStackAdapter = new TestStackAdapter(this);
+
+        command_find = "SELECT * FROM WordList";    //查询命令
+        cursor = dbHelper.findDatabase(command_find);   //获取游标
 
         switch (v.getId())
         {
             case R.id.button_find:      //点击按钮
             {
                 random_num = random.nextInt(1453);
-                command_find = "SELECT * FROM WordList";    //查询命令
-
-                cursor = dbHelper.findDatabase(command_find);   //获取游标
-
-
                 cursor.moveToPosition(random_num);  //就是这一句，调试了一个晚上。对Cursor类没有做好充分的了解，而没有加这行，导致程序一直崩......
                 word = cursor.getString(cursor.getColumnIndex("HeadWord"));     //获取单词
 
@@ -117,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.button_list:
             {
+                cursor.moveToPosition(0);
                 Intent intent = new Intent(MainActivity.this, WordList.class);
                 startActivity(intent);
             }
