@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public String word;
     private String command_find;    //数据库查询命令
     private String command_update;
+    private String word_pnonetic;
 
     public static Cursor cursor;   //操作数据库的游标
 
@@ -71,11 +72,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v)
     {
         TextView tv_word = (TextView)findViewById(R.id.textview_word);
-        TextView tv_phonetic = (TextView)findViewById(R.id.textview_phonetic);
+        TextView tv_phonetic_us = (TextView)findViewById(R.id.textview_phonetic_us);
+        TextView tv_phonetic_uk = (TextView)findViewById(R.id.textview_phonetic_uk);
         TextView tv_definition = (TextView)findViewById(R.id.textview_definition);
 
         command_find = "SELECT * FROM WordList";    //查询命令
         cursor = dbHelper.findDatabase(command_find);   //获取游标
+        String temp;
 
         switch (v.getId())
         {
@@ -84,17 +87,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 random_num = random.nextInt(1453);
                 cursor.moveToPosition(random_num);  //就是这一句，调试了一个晚上。对Cursor类没有做好充分的了解，而没有加这行，导致程序一直崩......
                 word = cursor.getString(cursor.getColumnIndex("HeadWord"));     //获取单词
+                word_pnonetic = cursor.getString(cursor.getColumnIndex("Phonetic"));
+
 
                 tv_word.setText(word);      //显示单词
-                tv_phonetic.setText(cursor.getString(cursor.getColumnIndex("Phonetic")));       //显示音标
-                tv_definition.setText(cursor.getString(cursor.getColumnIndex("QuickDefinition")));      //显示中文释义
+                if (word_pnonetic.indexOf("#") > 0)
+                {
+                    if (word_pnonetic.indexOf("S:") > 0)
+                    {
+                        tv_phonetic_us.setText("US [" + word_pnonetic.substring(word_pnonetic.indexOf("US:") + 4, word_pnonetic.indexOf("#")) + "]");       //显示音标
 
+                    }
+                    if (word_pnonetic.indexOf("UK:") > 0)
+                    {
+                        tv_phonetic_uk.setText("UK [" + word_pnonetic.substring(word_pnonetic.indexOf("UK:") + 4, word_pnonetic.length()-1) + "]");
+                    }
+                }
+                tv_definition.setText(cursor.getString(cursor.getColumnIndex("QuickDefinition")));      //显示中文释义
                 command_update = "UPDATE WordList " +
                         "SET CorrectCount = CorrectCount + 1 " +
                         "WHERE HeadWord = \"" + word + "\"";    //修改命令
                 dbHelper.updateDatabase(command_update);
-
-                Log.e(word + cursor.getString(7), cursor.getString(2) + cursor.getString(3));
+                //Log.e(word + cursor.getString(7), cursor.getString(2) + cursor.getString(3));
                 //cursor.close();
 
                 break;
