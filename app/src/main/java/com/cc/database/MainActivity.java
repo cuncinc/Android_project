@@ -23,9 +23,6 @@ import com.loopeer.cardstack.CardStackView;
 import java.util.Arrays;
 import java.util.Random;
 
-
-
-
 /*
 * 必应词典api：  http://xtk.azurewebsites.net/BingDictService.aspx?Word=welcome
 *               http://xtk.azurewebsites.net/BingDictService.aspx?Word=想要的单词
@@ -37,14 +34,14 @@ import java.util.Random;
 * */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
-    public DBManager dbHelper;
+    public static DBManager dbHelper;
     private Button B_add;
     private Button B_list;
     public Random random = new Random();
     public int random_num;
     public String word;
-    public String command_find;    //数据库查询命令
-    public String command_update;
+    private String command_find;    //数据库查询命令
+    private String command_update;
 
     public static Cursor cursor;   //操作数据库的游标
 
@@ -61,23 +58,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         B_add = (Button) findViewById(R.id.button_find);
         B_list = (Button) findViewById(R.id.button_list);
 
-
         //设置监听器
         B_add.setOnClickListener(this);
         B_list.setOnClickListener(this);
 
-
         dbHelper = new DBManager(this);
         //首次执行导入.db文件
         dbHelper.openDatabase();
-
-        /*
-        WebView webView = (WebView) findViewById(R.id.web_view);
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl("https://songchun.farbox.com");
-        */
-
     }
 
     @Override
@@ -108,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 dbHelper.updateDatabase(command_update);
 
                 Log.e(word + cursor.getString(7), cursor.getString(2) + cursor.getString(3));
-                cursor.close();
+                //cursor.close();
 
                 break;
             }

@@ -8,6 +8,7 @@ import android.widget.CursorAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.cc.database.MainActivity.cursor;
 import android.database.Cursor;
@@ -17,12 +18,7 @@ import android.widget.SimpleCursorAdapter;
 public class WordList extends AppCompatActivity
 {
 
-    String w = cursor.getString(cursor.getColumnIndex("HeadWord"));
-
-    private String[] data = { "Apple", "Banana", "Orange", "Watermelon",
-            "Pear", "Grape", "Pineapple", "Strawberry", "Cherry", "Mango",
-            "Apple", "Banana", "Orange", "Watermelon", "Pear", "Grape",
-            "Pineapple", "Strawberry", "Cherry", "Mango" };
+    private List<String> data = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -30,10 +26,11 @@ public class WordList extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_list);
 
+        ListView listView = (ListView) findViewById(R.id.list_word);
 
+        data = WordClass.getDataSource();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
                 (WordList.this, android.R.layout.simple_list_item_1, data);
-        ListView listView = (ListView) findViewById(R.id.list_word);
         listView.setAdapter(adapter);
     }
 }
