@@ -34,20 +34,8 @@ import java.util.Random;
 * */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
-    public static DBManager dbHelper;
-    private Button B_add;
-    private Button B_list;
-    public Random random = new Random();
-    public int random_num;
-    public String word;
-    private String command_find;    //数据库查询命令
-    private String command_update;
-    private String word_pnonetic;
 
-    public static Cursor cursor;   //操作数据库的游标
-
-    //mTestStackAdapter = new TestStackAdapter(this);
-
+    private Button B_remember_new;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -56,68 +44,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         //绑定按钮
-        B_add = (Button) findViewById(R.id.button_find);
-        B_list = (Button) findViewById(R.id.button_list);
+        B_remember_new = (Button) findViewById(R.id.button_remenber_new);
+
 
         //设置监听器
-        B_add.setOnClickListener(this);
-        B_list.setOnClickListener(this);
+        B_remember_new.setOnClickListener(this);
 
-        dbHelper = new DBManager(this);
-        //首次执行导入.db文件
-        dbHelper.openDatabase();
     }
 
     @Override
     public void onClick(View v)
     {
-        TextView tv_word = (TextView)findViewById(R.id.textview_word);
-        TextView tv_phonetic_us = (TextView)findViewById(R.id.textview_phonetic_us);
-        TextView tv_phonetic_uk = (TextView)findViewById(R.id.textview_phonetic_uk);
-        TextView tv_definition = (TextView)findViewById(R.id.textview_definition);
-
-        command_find = "SELECT * FROM WordList";    //查询命令
-        cursor = dbHelper.findDatabase(command_find);   //获取游标
-        String temp;
-
         switch (v.getId())
         {
-            case R.id.button_find:      //点击按钮
+            case R.id.button_remenber_new:
             {
-                random_num = random.nextInt(1453);
-                cursor.moveToPosition(random_num);  //就是这一句，调试了一个晚上。对Cursor类没有做好充分的了解，而没有加这行，导致程序一直崩......
-                word = cursor.getString(cursor.getColumnIndex("HeadWord"));     //获取单词
-                word_pnonetic = cursor.getString(cursor.getColumnIndex("Phonetic"));
-
-
-                tv_word.setText(word);      //显示单词
-                if (word_pnonetic.indexOf("#") > 0)
-                {
-                    if (word_pnonetic.indexOf("S:") > 0)
-                    {
-                        tv_phonetic_us.setText("US [" + word_pnonetic.substring(word_pnonetic.indexOf("US:") + 4, word_pnonetic.indexOf("#")) + "]");       //显示音标
-
-                    }
-                    if (word_pnonetic.indexOf("UK:") > 0)
-                    {
-                        tv_phonetic_uk.setText("UK [" + word_pnonetic.substring(word_pnonetic.indexOf("UK:") + 4, word_pnonetic.length()-1) + "]");
-                    }
-                }
-                tv_definition.setText(cursor.getString(cursor.getColumnIndex("QuickDefinition")));      //显示中文释义
-                command_update = "UPDATE WordList " +
-                        "SET CorrectCount = CorrectCount + 1 " +
-                        "WHERE HeadWord = \"" + word + "\"";    //修改命令
-                dbHelper.updateDatabase(command_update);
-                //Log.e(word + cursor.getString(7), cursor.getString(2) + cursor.getString(3));
-                //cursor.close();
-
-                break;
-            }
-
-            case R.id.button_list:
-            {
-                cursor.moveToPosition(0);
-                Intent intent = new Intent(MainActivity.this, WordList.class);
+                Intent intent = new Intent(MainActivity.this, RemenberNew.class);
                 startActivity(intent);
             }
 

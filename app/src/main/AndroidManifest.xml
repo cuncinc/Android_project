@@ -27,6 +27,8 @@
 
         <activity android:name=".WordList">
         </activity>
+        <activity android:name=".RemenberNew">
+        </activity>
     </application>
 
 </manifest>

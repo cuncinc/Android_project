@@ -10,7 +10,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.cc.database.MainActivity.cursor;
+import static com.cc.database.RemenberNew.cursor;
 import android.database.Cursor;
 import android.widget.SimpleCursorAdapter;
 

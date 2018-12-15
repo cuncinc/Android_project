@@ -1,6 +1,5 @@
 package com.cc.database;
 
-import android.util.Log;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -8,8 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.cc.database.MainActivity.cursor;
-import static com.cc.database.MainActivity.dbHelper;
+import static com.cc.database.RemenberNew.cursor;
+import static com.cc.database.RemenberNew.dbHelper;
 
 
 public class WordClass
