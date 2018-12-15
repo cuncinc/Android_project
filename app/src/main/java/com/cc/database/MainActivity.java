@@ -21,7 +21,6 @@ import android.widget.TextView;
 import com.loopeer.cardstack.CardStackView;
 
 import java.util.Arrays;
-import java.util.Random;
 
 /*
 * 必应词典api：  http://xtk.azurewebsites.net/BingDictService.aspx?Word=welcome
@@ -32,10 +31,17 @@ import java.util.Random;
 *
 *卡片堆叠效果     https://www.ctolib.com/article/compares/258
 * */
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
+    public static DBManager dbHelper;
+    public static Cursor cursor;   //操作数据库的游标
 
     private Button B_remember_new;
+    private Button B_remember_old;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -45,10 +51,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //绑定按钮
         B_remember_new = (Button) findViewById(R.id.button_remenber_new);
+        B_remember_old = (Button) findViewById(R.id.button_remenber_old);
 
 
         //设置监听器
         B_remember_new.setOnClickListener(this);
+        B_remember_old.setOnClickListener(this);
+
+        dbHelper = new DBManager(this);
+        //首次执行导入.db文件
+        dbHelper.openDatabase();
 
     }
 
@@ -61,6 +73,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             {
                 Intent intent = new Intent(MainActivity.this, RemenberNew.class);
                 startActivity(intent);
+
+                break;
+            }
+
+            case R.id.button_remenber_old:
+            {
+
+                break;
             }
 
             default:

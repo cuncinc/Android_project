@@ -7,8 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.cc.database.RemenberNew.cursor;
-import static com.cc.database.RemenberNew.dbHelper;
+import static com.cc.database.MainActivity.cursor;
+import static com.cc.database.MainActivity.dbHelper;
 
 
 public class WordClass
@@ -31,7 +31,6 @@ public class WordClass
         for (i=0; cursor.moveToNext() && i<1454; ++i)
         {
             list.add( cursor.getString( cursor.getColumnIndex("HeadWord") ));
-
         }
         return list;
     }

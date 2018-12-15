@@ -26,8 +26,12 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.google.code.gson:gson:2.7'
-    testCompile 'junit:junit:4.12'
-    compile 'com.google.android.gms:play-services-appindexing:8.4.0'
+    compile 'com.google.android.gms:play-services-appindexing:9.6.1'
     compile 'com.loopeer.library:cardstack:1.0.2'
     compile 'com.android.support:recyclerview-v7:24.2.1'
+    compile 'com.google.firebase:firebase-core:9.6.1'
+    testCompile 'junit:junit:4.12'
 }
+
+
+apply plugin: 'com.google.gms.google-services'

@@ -36,7 +36,7 @@ android:weightSum="1">
     android:weightSum="1">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_alignParentLeft="true"
@@ -56,7 +56,7 @@ android:weightSum="1">
             android:allowUndo="false"/>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
@@ -75,17 +75,23 @@ android:weightSum="1">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textColor="@color/color_word"
                 android:background="@color/color_phonetic_background"/>
 
             <TextView
                 android:id="@+id/textview_definition"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:gravity="left"/>
+
+            <Button
+                android:id="@+id/button_chinese"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="释意"/>
 
 
         </LinearLayout>
@@ -94,18 +100,25 @@ android:weightSum="1">
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:layout_gravity="center">
 
         <Button
-            android:id="@+id/button_find"
-            android:layout_width="211dp"
+            android:id="@+id/button_unknow"
+            android:layout_width="175dp"
             android:layout_height="103dp"
-            android:text="@string/button_add"
+            android:text="不认识"
             android:focusable="false"
             />
+
+        <Button
+            android:id="@+id/button_know"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="认识"/>
+
     </LinearLayout>
 
 </LinearLayout>

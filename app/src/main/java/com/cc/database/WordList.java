@@ -10,14 +10,9 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.cc.database.RemenberNew.cursor;
-import android.database.Cursor;
-import android.widget.SimpleCursorAdapter;
-
 
 public class WordList extends AppCompatActivity
 {
-
     private List<String> data = null;
 
     @Override
