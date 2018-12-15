@@ -50,7 +50,7 @@ public class RemenberNew extends AppCompatActivity implements View.OnClickListen
 {
     public String word;
 
-    private String command_find;    //数据库查询命令
+    private String command_find = "SELECT * FROM WordList";    //查询命令
     private String command_update;
     private String word_pnonetic;
     private String word_chinese;
@@ -61,6 +61,8 @@ public class RemenberNew extends AppCompatActivity implements View.OnClickListen
 
     Random random = new Random();
     int random_num;
+
+
 
     //mTestStackAdapter = new TestStackAdapter(this);
 
@@ -91,7 +93,6 @@ public class RemenberNew extends AppCompatActivity implements View.OnClickListen
         TextView tv_phonetic_uk = (TextView)findViewById(R.id.textview_phonetic_uk);
         TextView tv_definition = (TextView)findViewById(R.id.textview_definition);
 
-        command_find = "SELECT * FROM WordList";    //查询命令
         cursor = dbHelper.findDatabase(command_find);   //获取游标
 
         switch (v.getId())
@@ -101,6 +102,8 @@ public class RemenberNew extends AppCompatActivity implements View.OnClickListen
                 cursor.moveToPosition(0);
                 Intent intent = new Intent(RemenberNew.this, WordList.class);
                 startActivity(intent);
+
+                break;
             }
 
             case R.id.button_chinese:
@@ -116,6 +119,7 @@ public class RemenberNew extends AppCompatActivity implements View.OnClickListen
                 word = cursor.getString(cursor.getColumnIndex("HeadWord"));     //获取单词
                 word_pnonetic = cursor.getString(cursor.getColumnIndex("Phonetic"));
                 word_chinese = cursor.getString(cursor.getColumnIndex("QuickDefinition"));
+
                 tv_definition.setText("");
                 tv_phonetic_us.setText("");
                 tv_phonetic_uk.setText("");
@@ -140,6 +144,8 @@ public class RemenberNew extends AppCompatActivity implements View.OnClickListen
                 dbHelper.updateDatabase(command_update);
                 //Log.e(word + cursor.getString(7), cursor.getString(2) + cursor.getString(3));
 
+
+
                 break;
             }
 
@@ -151,6 +157,7 @@ public class RemenberNew extends AppCompatActivity implements View.OnClickListen
                 word = cursor.getString(cursor.getColumnIndex("HeadWord"));     //获取单词
                 word_pnonetic = cursor.getString(cursor.getColumnIndex("Phonetic"));
                 word_chinese = cursor.getString(cursor.getColumnIndex("QuickDefinition"));
+
                 tv_definition.setText("");
                 tv_phonetic_us.setText("");
                 tv_phonetic_uk.setText("");
@@ -171,6 +178,8 @@ public class RemenberNew extends AppCompatActivity implements View.OnClickListen
                         "SET CorrectCount = -1 " +
                         "WHERE HeadWord = \"" + word + "\"";    //修改命令
                 dbHelper.updateDatabase(command_update);
+
+
 
                 break;
             }
