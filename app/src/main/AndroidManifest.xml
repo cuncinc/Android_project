@@ -29,6 +29,8 @@
         </activity>
         <activity android:name=".RemenberNew">
         </activity>
+        <activity android:name=".Search">
+        </activity>
     </application>
 
 </manifest>

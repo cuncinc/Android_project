@@ -5,7 +5,11 @@
     <color name="colorAccent">#1296DB</color>
    <!-- <color name="colorAccent">#FF4081</color> -->
     <color name="color_word">#232323</color>
-    <color name="color_phonetic_background">#efefef</color>
+    <color name="color_phonetic_background">#cccccc</color>
     <color name="color_icon">#1296DB</color>
     <color name="color_search_background">#F7F8F9</color>
+    <color name="color_win10_start_bg">#10588d</color>
+    <color name="color_win10_bottom">#19314B</color>
+    <color name="color_bing_dictionary_green">#008272</color>
+    <color name="color_bing_dictionary_bg_white">#efefef</color>
 </resources>

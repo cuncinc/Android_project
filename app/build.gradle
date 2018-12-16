@@ -30,4 +30,5 @@ dependencies {
     compile 'com.loopeer.library:cardstack:1.0.2'
     testCompile 'junit:junit:4.12'
     compile 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.2.1'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
 }

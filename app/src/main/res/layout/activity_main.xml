@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -11,46 +12,69 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     tools:context="com.cc.database.MainActivity"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="@color/color_bing_dictionary_bg_white">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <EditText
-            android:layout_width="267dp"
-            android:layout_height="48dp"
-            android:background="@color/color_search_background"
-            android:hint="搜索单词"/>
+            android:id="@+id/edittext_search"
+            android:layout_width="282dp"
+            android:layout_height="match_parent"
+            android:background="@color/common_google_signin_btn_text_dark_default"
+            android:hint="搜索单词..."
+            android:textColor="@color/color_word"/>
 
         <Button
+            android:id="@+id/button_search"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="搜索"/>
+            android:layout_height="32dp"
+            android:text="搜索"
+            android:background="@color/color_icon"
+            android:textColor="@android:color/white"/>
+        </LinearLayout>
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="13dp"
+        android:layout_weight="0.25"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/button_remenber_new"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="学习新单词"
+            android:background="@color/color_icon"
+            android:textColor="@android:color/white"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/button_remenber_old"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="复习旧单词"
+            android:background="@color/color_win10_start_bg"
+            android:textColor="@android:color/white"
+            android:layout_weight="1"/>
     </LinearLayout>
 
 
-
-    <Button
-        android:id="@+id/button_remenber_new"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="学习新单词"/>
-
-    <Button
-        android:id="@+id/button_remenber_old"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="复习旧单词"/>
-
     <com.mcxtzhang.swipemenulib.SwipeMenuLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:paddingBottom="1dp"
         >
+        <!--
+        此控件使用：https://blog.csdn.net/zxt0601/article/details/53157090
+        -->
 
         <TextView
             android:id="@+id/content"
@@ -58,7 +82,7 @@
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
-            android:text="项目中我是任意复杂的原ContentItem布局"/>
+            android:text="仿QQ侧滑删除控件"/>
 
         <Button
             android:id="@+id/btnTop"
