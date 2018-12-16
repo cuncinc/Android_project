@@ -20,7 +20,7 @@ public class WordClass
 
     public static List<String> getDataSource()
     {
-        String command_sort = "SELECT * FROM WordList WHERE CorrectCount > 0 " +
+        String command_sort = "SELECT * FROM WordList WHERE IncorrectCount > 0 " +
                 "AND NotebookGuid = \"1001\"";  //只列出四级单词
 
         cursor = dbHelper.findDatabase(command_sort);

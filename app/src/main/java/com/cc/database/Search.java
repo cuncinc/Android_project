@@ -33,6 +33,10 @@ public class Search extends AppCompatActivity  implements View.OnClickListener
     private Button B_search;
     private TextView TV_search_return;
     private EditText ET_search;
+    private TextView TV_1;
+    private TextView TV_2;
+    private TextView TV_3;
+    private TextView TV_4;
 
     private Response response;
     private Request request;
@@ -86,6 +90,10 @@ public class Search extends AppCompatActivity  implements View.OnClickListener
         setContentView(R.layout.activity_search);
 
         TV_search_return = (TextView) findViewById(R.id.textview_search_return);
+        TV_1 = (TextView) findViewById(R.id.textview_1);
+        TV_2 = (TextView) findViewById(R.id.textview_2);
+        TV_3 = (TextView) findViewById(R.id.textview_3);
+        TV_4 = (TextView) findViewById(R.id.textview_4);
         ET_search = (EditText)findViewById(R.id.edittext_search2);
 
         B_search = (Button) findViewById(R.id.button_search2);
@@ -101,7 +109,6 @@ public class Search extends AppCompatActivity  implements View.OnClickListener
         if (v.getId() == R.id.button_search2)
         {
             searched_word = ET_search.getText().toString();
-            Log.e("已点击按钮", searched_word);
             sendRequestWithOkHttp();
         }
     }
@@ -117,14 +124,15 @@ public class Search extends AppCompatActivity  implements View.OnClickListener
                 {
                     OkHttpClient client = new OkHttpClient();
                     request = new Request.Builder()
-                            .url("http://xtk.azurewebsites.net/BingDictService.aspx?Word=" + searched_word)
-                            //.url(searched_word)
+                            .url("http://xtk.azurewebsites.net/BingDictService.aspx?Word=")
+                            .url(searched_word)
                             .build();
 
                     response = client.newCall(request).execute();
                     responseData = response.body().string();
+                    JSONWithJSONObject(responseData);
                     TV_search_return.setText(responseData);
-                    Log.e("链接已响应",responseData);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -132,17 +140,25 @@ public class Search extends AppCompatActivity  implements View.OnClickListener
         }).start();
     }
 
-    private void parseJSONWithJSONObject(String jsonData) {
+
+
+    private void JSONWithJSONObject(String jsonData)
+    {
         try {
             jsonArray = new JSONArray(jsonData);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                String id = jsonObject.getString("id");
-                String name = jsonObject.getString("name");
-                String version = jsonObject.getString("version");
-                Log.d("MainActivity", "id is " + id);
-                Log.d("MainActivity", "name is " + name);
-                Log.d("MainActivity", "version is " + version);
+                String id = jsonObject.getString("word");
+                String name = jsonObject.getString("pronunciation");
+                String version = jsonObject.getString("defs");
+
+                TV_1.setText(id);
+                TV_2.setText(name);
+                TV_3.setText(version);
+
+                Log.e("MainActivity", "id is " + id);
+                Log.e("MainActivity", "name is " + name);
+                Log.e("MainActivity", "version is " + version);
             }
         } catch (Exception e) {
             e.printStackTrace();

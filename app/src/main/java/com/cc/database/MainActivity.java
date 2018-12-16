@@ -88,6 +88,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.button_remenber_old:
             {
+                Intent intent = new Intent(MainActivity.this, RemenberOld.class);
+                startActivity(intent);
+
                 break;
             }
 

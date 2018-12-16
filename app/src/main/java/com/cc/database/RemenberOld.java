@@ -46,11 +46,11 @@ import android.widget.TextView;
 import static com.cc.database.MainActivity.cursor;
 import static com.cc.database.MainActivity.dbHelper;
 
-public class RemenberNew extends AppCompatActivity implements View.OnClickListener
+public class RemenberOld extends AppCompatActivity implements View.OnClickListener
 {
     public String word;
 
-    private String command_find = "SELECT * FROM WordList";    //查询命令
+    private String command_find = "SELECT * FROM WordList WHERE IncorrectCount > 0";
     private String command_update;
     private String word_pnonetic;
     private String word_chinese;
@@ -65,7 +65,7 @@ public class RemenberNew extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState);     //调用从父类继承过来的onCreate方法
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_remenber_new);
 
         //绑定按钮
@@ -89,14 +89,19 @@ public class RemenberNew extends AppCompatActivity implements View.OnClickListen
         TextView tv_phonetic_uk = (TextView)findViewById(R.id.textview_phonetic_uk);
         TextView tv_definition = (TextView)findViewById(R.id.textview_definition);
 
-        cursor = dbHelper.findDatabase(command_find);   //获取游标
+        cursor = dbHelper.findDatabase(command_find);
+
+        if (cursor.getColumnCount() < 1)
+        {
+            tv_definition.setText("没有要记忆的单词");
+        }
 
         switch (v.getId())
         {
             case R.id.button_list:
             {
                 cursor.moveToPosition(0);
-                Intent intent = new Intent(RemenberNew.this, WordList.class);
+                Intent intent = new Intent(RemenberOld.this, WordList.class);
                 startActivity(intent);
 
                 break;
@@ -104,20 +109,31 @@ public class RemenberNew extends AppCompatActivity implements View.OnClickListen
 
             case R.id.button_chinese:
             {
-                tv_definition.setText(word_chinese);      //显示中文释义
+                if (cursor.getColumnCount() < 1)
+                {
+                    tv_definition.setText("没有要记忆的单词");
+                    break;
+                }
+                tv_definition.setText(word_chinese);
                 break;
             }
 
-            case R.id.button_unknow:      //点击按钮
+            case R.id.button_unknow:
             {
+                if (cursor.getColumnCount() < 1)
+                {
+                    tv_definition.setText("没有要记忆的单词");
+                    break;
+                }
+
                 command_update = "UPDATE WordList " +
-                        "SET IncorrectCount = IncorrectCount + 1 " +
-                        "WHERE HeadWord = \"" + word + "\"";    //修改命令
+                        "SET IncorrectCount = incorrectCount + 1 " +
+                        "WHERE HeadWord = \"" + word + "\"";
                 dbHelper.updateDatabase(command_update);
 
-                random_num = random.nextInt(1453);
-                cursor.moveToPosition(random_num);  //就是这一句，调试了一个晚上。对Cursor类没有做好充分的了解，而没有加这行，导致程序一直崩......
-                word = cursor.getString(cursor.getColumnIndex("HeadWord"));     //获取单词
+                random_num = random.nextInt(cursor.getColumnCount());
+                cursor.moveToPosition(random_num);
+                word = cursor.getString(cursor.getColumnIndex("HeadWord"));
                 word_pnonetic = cursor.getString(cursor.getColumnIndex("Phonetic"));
                 word_chinese = cursor.getString(cursor.getColumnIndex("QuickDefinition"));
 
@@ -125,7 +141,7 @@ public class RemenberNew extends AppCompatActivity implements View.OnClickListen
                 tv_phonetic_us.setText("");
                 tv_phonetic_uk.setText("");
 
-                tv_word.setText(word);      //显示单词
+                tv_word.setText(word);
                 if (word_pnonetic.indexOf("#") > 0)
                 {
                     if (word_pnonetic.indexOf("S:") > 0)
@@ -138,21 +154,31 @@ public class RemenberNew extends AppCompatActivity implements View.OnClickListen
                     }
                 }
 
-
                 break;
             }
 
 
-            case R.id.button_know:      //点击按钮
+            case R.id.button_know:
             {
+                if (cursor.getColumnCount() < 1)
+                {
+                    tv_definition.setText("没有要记忆的单词");
+                    break;
+                }
+
                 command_update = "UPDATE WordList " +
                         "SET CorrectCount = 1 " +
-                        "WHERE HeadWord = \"" + word + "\"";    //修改命令
+                        "WHERE HeadWord = \"" + word + "\"";
                 dbHelper.updateDatabase(command_update);
 
-                random_num = random.nextInt(1453);
-                cursor.moveToPosition(random_num);  //就是这一句，调试了一个晚上。对Cursor类没有做好充分的了解，而没有加这行，导致程序一直崩......
-                word = cursor.getString(cursor.getColumnIndex("HeadWord"));     //获取单词
+                command_update = "UPDATE WordList " +
+                        "SET IncorrectCount = 0 " +
+                        "WHERE HeadWord = \"" + word + "\"";
+                dbHelper.updateDatabase(command_update);
+
+                random_num = random.nextInt(cursor.getColumnCount());
+                cursor.moveToPosition(random_num);
+                word = cursor.getString(cursor.getColumnIndex("HeadWord"));
                 word_pnonetic = cursor.getString(cursor.getColumnIndex("Phonetic"));
                 word_chinese = cursor.getString(cursor.getColumnIndex("QuickDefinition"));
 
@@ -160,7 +186,7 @@ public class RemenberNew extends AppCompatActivity implements View.OnClickListen
                 tv_phonetic_us.setText("");
                 tv_phonetic_uk.setText("");
 
-                tv_word.setText(word);      //显示单词
+                tv_word.setText(word);
                 if (word_pnonetic.indexOf("#") > 0)
                 {
                     if (word_pnonetic.indexOf("S:") > 0)

@@ -59,22 +59,23 @@
             android:id="@+id/button_remenber_old"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="复习旧单词"
+            android:text="记忆"
             android:background="@color/color_win10_start_bg"
             android:textColor="@android:color/white"
             android:layout_weight="1"/>
     </LinearLayout>
 
 
+    <!--
     <com.mcxtzhang.swipemenulib.SwipeMenuLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:paddingBottom="1dp"
         >
-        <!--
+
         此控件使用：https://blog.csdn.net/zxt0601/article/details/53157090
-        -->
+
 
         <TextView
             android:id="@+id/content"
@@ -100,6 +101,8 @@
             android:text="删除"
             android:textColor="@android:color/white"/>
 
+
     </com.mcxtzhang.swipemenulib.SwipeMenuLayout>
+      -->
 
 </LinearLayout>
