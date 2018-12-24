@@ -1,12 +1,13 @@
-package com.cc.database;
+package com.cc.database.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
-import android.widget.CursorAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
+import com.cc.database.R;
+import com.cc.database.datasource.WordClass;
+
 import java.util.List;
 
 

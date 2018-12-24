@@ -1,14 +1,11 @@
-package com.cc.database;
+package com.cc.database.datasource;
 
-
-import java.util.Date;
-import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.cc.database.MainActivity.cursor;
-import static com.cc.database.MainActivity.dbHelper;
+import static com.cc.database.activity.MainActivity.cursor;
+import static com.cc.database.activity.MainActivity.dbHelper;
 
 
 public class WordClass
