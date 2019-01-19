@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button B_remember_new;
     private Button B_remember_old;
     private Button B_search;
-    private EditText ET_search;
     public static String searched_word;
 
 
@@ -43,8 +42,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         B_remember_new = (Button) findViewById(R.id.button_remenber_new);
         B_remember_old = (Button) findViewById(R.id.button_remenber_old);
         B_search = (Button) findViewById(R.id.button_search);
-
-        ET_search = (EditText)findViewById(R.id.edittext_search);
 
 
 
@@ -83,10 +80,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.button_search:
             {
-                searched_word = ET_search.getText().toString();
                 Intent intent = new Intent(MainActivity.this, Search.class);
                 startActivity(intent);
-                //finish();
 
                 break;
             }
