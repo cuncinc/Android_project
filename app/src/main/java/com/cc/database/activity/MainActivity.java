@@ -11,12 +11,6 @@ import com.cc.database.datasource.DBManager;
 import com.cc.database.R;
 
 /*
-* 必应词典api：  http://xtk.azurewebsites.net/BingDictService.aspx?Word=welcome
-*               http://xtk.azurewebsites.net/BingDictService.aspx?Word=想要的单词
-*               https://github.com/jokermonn/-Api/blob/master/BingDic.md
-*               https://zhuanlan.zhihu.com/p/22421123
-*
-*
 *卡片堆叠效果     https://www.ctolib.com/article/compares/258
 * */
 
@@ -80,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.button_search:
             {
-                Intent intent = new Intent(MainActivity.this, Search.class);
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
                 startActivity(intent);
 
                 break;

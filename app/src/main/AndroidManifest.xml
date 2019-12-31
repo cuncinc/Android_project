@@ -29,9 +29,9 @@
         </activity>
         <activity android:name=".activity.RemenberNew">
         </activity>
-        <activity android:name=".activity.Search">
-        </activity>
         <activity android:name=".activity.RemenberOld">
+        </activity>
+        <activity android:name=".activity.SearchActivity">
         </activity>
     </application>
 
