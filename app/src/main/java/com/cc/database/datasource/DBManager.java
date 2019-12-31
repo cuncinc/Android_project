@@ -55,8 +55,6 @@ public class DBManager
         this.database = this.openDatabase(DB_PATH + "/" + DB_NAME);
     }
 
-
-    //打开数据库, 私有方法, 函数返回值
     private SQLiteDatabase openDatabase(String dbfile)
     {
         try {
@@ -91,8 +89,6 @@ public class DBManager
         return null;
     }
 
-
-
     public Cursor findDatabase(String command_find)
     {
         //查找数据
@@ -102,7 +98,11 @@ public class DBManager
     public void updateDatabase(String command_update)
     {
         database.execSQL(command_update);
-        return;
+    }
+
+    public void deleteDatabase(String command_delete)
+    {
+        database.execSQL(command_delete);
     }
 
 

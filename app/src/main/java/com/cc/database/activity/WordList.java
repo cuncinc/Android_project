@@ -2,31 +2,60 @@ package com.cc.database.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.cc.database.R;
-import com.cc.database.datasource.WordClass;
+import com.cc.database.adapter.WordsAdapter;
+import com.cc.database.datasource.Word;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.cc.database.activity.MainActivity.cursor;
+import static com.cc.database.activity.MainActivity.dbHelper;
 
 
 public class WordList extends AppCompatActivity
 {
-    private List<String> data = null;
+    private List<Word> words = new ArrayList<>();
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_list);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView_words);
+        initView();
+    }
 
-        ListView listView = (ListView) findViewById(R.id.list_word);
+    void initView()
+    {
+        initWords();
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(manager);
+        WordsAdapter adapter = new WordsAdapter(words);
+        recyclerView.setAdapter(adapter);
+    }
 
-        data = WordClass.getDataSource();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>
-                (WordList.this, android.R.layout.simple_list_item_1, data);
-        listView.setAdapter(adapter);
+    void initWords()
+    {
+        String command_sort = "SELECT * FROM WordList WHERE IncorrectCount > 0 " +
+                "AND NotebookGuid = \"1001\"";  //只列出四级单词
+
+        cursor = dbHelper.findDatabase(command_sort);
+        cursor.moveToFirst();
+
+        for (int i=0; cursor.moveToNext() && i<1454; ++i)
+        {
+            String headWord = cursor.getString( cursor.getColumnIndex("HeadWord") );
+            String def = cursor.getString(cursor.getColumnIndex("QuickDefinition"));
+            String phonetic = cursor.getString(cursor.getColumnIndex("Phonetic"));
+            Word word = new Word(headWord,phonetic, def);
+            words.add(word);
+        }
     }
 }
 
