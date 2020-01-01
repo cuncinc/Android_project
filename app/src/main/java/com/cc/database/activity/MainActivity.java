@@ -14,74 +14,61 @@ import com.cc.database.R;
 *卡片堆叠效果     https://www.ctolib.com/article/compares/258
 * */
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener
+public class MainActivity extends AppCompatActivity
 {
     public static DBManager dbHelper;
     public static Cursor cursor;   //操作数据库的游标
 
-    private Button B_remember_new;
-    private Button B_remember_old;
-    private Button B_search;
-    public static String searched_word;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState);     //调用从父类继承过来的onCreate方法
+        dbHelper = new DBManager(this);
+        dbHelper.openDatabase();//首次执行导入.db文件
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //绑定按钮
-        B_remember_new = (Button) findViewById(R.id.button_remenber_new);
-        B_remember_old = (Button) findViewById(R.id.button_remenber_old);
-        B_search = (Button) findViewById(R.id.button_search);
-
-
-
-
-        //设置监听器
-        B_remember_new.setOnClickListener(this);
-        B_remember_old.setOnClickListener(this);
-        B_search.setOnClickListener(this);
-
-        dbHelper = new DBManager(this);
-        //首次执行导入.db文件
-        dbHelper.openDatabase();
-
+        initView();
     }
 
-    @Override
-    public void onClick(View v)
+    private void initView()
     {
-        switch (v.getId())
+        Button B_search = (Button) findViewById(R.id.button_search);
+        Button B_card = (Button) findViewById(R.id.button_card);
+        Button rawWordsButton = (Button) findViewById(R.id.button_raw_words);
+
+        B_search.setOnClickListener(new View.OnClickListener()
         {
-            case R.id.button_remenber_new:
-            {
-                Intent intent = new Intent(MainActivity.this, RemenberNew.class);
-                startActivity(intent);
-
-                break;
-            }
-
-            case R.id.button_remenber_old:
-            {
-                Intent intent = new Intent(MainActivity.this, RemenberOld.class);
-                startActivity(intent);
-
-                break;
-            }
-
-            case R.id.button_search:
+            @Override
+            public void onClick(View v)
             {
                 Intent intent = new Intent(MainActivity.this, SearchActivity.class);
                 startActivity(intent);
-
-                break;
             }
+        });
+        B_card.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(MainActivity.this, CardViewActivity.class);
+                startActivity(intent);
+            }
+        });
+        rawWordsButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(MainActivity.this, ListRawWordsActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
-            default:
-                break;
-        }
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        dbHelper.closeDatabase();
     }
 }

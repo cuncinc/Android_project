@@ -25,13 +25,11 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"/>
 
-        <activity android:name=".activity.WordList">
-        </activity>
-        <activity android:name=".activity.RemenberNew">
-        </activity>
-        <activity android:name=".activity.RemenberOld">
+        <activity android:name=".activity.ListRawWordsActivity">
         </activity>
         <activity android:name=".activity.SearchActivity">
+        </activity>
+        <activity android:name=".activity.CardViewActivity">
         </activity>
     </application>
 

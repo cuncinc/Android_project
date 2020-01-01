@@ -19,8 +19,8 @@ import static com.cc.database.activity.MainActivity.dbHelper;
 public class SearchActivity extends AppCompatActivity
 {
     private SearchView searchView;
-    private RecyclerView recyclerView;
     private SearchListAdapter adapter;
+    private RecyclerView recyclerView;
     private List<Word> wordList = new ArrayList<>();
 
     @Override
@@ -33,7 +33,6 @@ public class SearchActivity extends AppCompatActivity
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager);
-//        listView.setTextFilterEnabled(true);
 
         searchView = (SearchView) findViewById(R.id.sear_view);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()

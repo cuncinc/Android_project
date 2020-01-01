@@ -12,4 +12,5 @@
     <color name="color_win10_bottom">#19314B</color>
     <color name="color_bing_dictionary_green">#008272</color>
     <color name="color_bing_dictionary_bg_white">#efefef</color>
+    <color name="color_bing_green">#008272</color>
 </resources>

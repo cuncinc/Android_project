@@ -15,86 +15,35 @@
     android:weightSum="1"
     android:background="@color/color_bing_dictionary_bg_white">
 
-    <LinearLayout
+    <Button
+        android:id="@+id/button_search"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/button_search"
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:text="搜索"
-            android:background="@color/color_icon"
-            android:textColor="@android:color/white"/>
-        </LinearLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="13dp"
-        android:layout_weight="0.25"/>
+        android:layout_height="36dp"
+        android:background="#FFFFFF"
+        android:text="查找单词..."
+        android:textColor="@color/color_word"/>
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <Button
-            android:id="@+id/button_remenber_new"
+            android:id="@+id/button_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="学习新单词"
-            android:background="@color/color_icon"
-            android:textColor="@android:color/white"
-            android:layout_weight="1"/>
+            android:text="Card"/>
 
         <Button
-            android:id="@+id/button_remenber_old"
+            android:id="@+id/button_raw_words"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="记忆"
-            android:background="@color/color_win10_start_bg"
-            android:textColor="@android:color/white"
-            android:layout_weight="1"/>
+            android:text="生词"/>
     </LinearLayout>
 
-
-    <!--
-    <com.mcxtzhang.swipemenulib.SwipeMenuLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView_card_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:paddingBottom="1dp"
-        >
-
-        此控件使用：https://blog.csdn.net/zxt0601/article/details/53157090
-
-
-        <TextView
-            android:id="@+id/content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?android:attr/selectableItemBackground"
-            android:gravity="center"
-            android:text="仿QQ侧滑删除控件"/>
-
-        <Button
-            android:id="@+id/btnTop"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:background="#d9dee4"
-            android:text="置顶"
-            android:textColor="@android:color/white"/>
-
-        <Button
-            android:id="@+id/btnDelete"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:background="@color/color_icon"
-            android:text="删除"
-            android:textColor="@android:color/white"/>
-
-
-    </com.mcxtzhang.swipemenulib.SwipeMenuLayout>
-      -->
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
 </LinearLayout>
