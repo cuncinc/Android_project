@@ -3,29 +3,31 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="300dp"
         android:layout_height="400dp"
-        android:gravity="center"
         android:orientation="vertical"
-        android:background="@color/color_bing_green">
+        android:gravity="center_horizontal"
+        android:background="#008770">
 
         <TextView
+            android:layout_marginTop="80dp"
             android:id="@+id/textView_card_word"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18pt"
+            android:textSize="19pt"
             android:textColor="#FFFFFF"/>
         <TextView
             android:id="@+id/textView_card_pronounce"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:textSize="8pt"
-            android:textColor="#FFFFFF"/>
+            android:textColor="#EEEEEE"/>
         <TextView
             android:id="@+id/textView_card_def"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="10pt"
-            android:layout_marginTop="16dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:textColor="#FFFFFF"/>
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:textColor="#FEFEFE"/>
     </LinearLayout>

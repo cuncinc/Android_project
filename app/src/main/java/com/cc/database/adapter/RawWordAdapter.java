@@ -14,7 +14,7 @@ import java.util.List;
 
 import static com.cc.database.activity.MainActivity.dbHelper;
 
-public class ReaWordAdapter extends RecyclerView.Adapter<ReaWordAdapter.ViewHolder>
+public class RawWordAdapter extends RecyclerView.Adapter<RawWordAdapter.ViewHolder>
 {
     private List<Word> wordsList;
 
@@ -35,15 +35,15 @@ public class ReaWordAdapter extends RecyclerView.Adapter<ReaWordAdapter.ViewHold
         }
     }
 
-    public ReaWordAdapter(List<Word> words)
+    public RawWordAdapter(List<Word> words)
     {
         wordsList = words;
     }
 
-    public ReaWordAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int i)
+    public RawWordAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int i)
     {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.word_xml, parent, false);
-        final ReaWordAdapter.ViewHolder holder = new ReaWordAdapter.ViewHolder(view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_raw_word, parent, false);
+        final RawWordAdapter.ViewHolder holder = new RawWordAdapter.ViewHolder(view);
 
         //布局的点击事件
 //        holder.itemView.setOnClickListener(new View.OnClickListener()

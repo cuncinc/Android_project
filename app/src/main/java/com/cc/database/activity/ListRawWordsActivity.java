@@ -3,11 +3,12 @@ package com.cc.database.activity;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.cc.database.R;
-import com.cc.database.adapter.ReaWordAdapter;
+import com.cc.database.adapter.RawWordAdapter;
 import com.cc.database.datasource.Word;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class ListRawWordsActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_raw_words);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView_words);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         initView();
     }
 
@@ -36,7 +38,7 @@ public class ListRawWordsActivity extends AppCompatActivity
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager);
-        ReaWordAdapter adapter = new ReaWordAdapter(words);
+        RawWordAdapter adapter = new RawWordAdapter(words);
         recyclerView.setAdapter(adapter);
     }
 
