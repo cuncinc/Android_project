@@ -6,27 +6,28 @@
     android:paddingBottom="2dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <TextView
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="12dp"
+        android:textSize="9pt"
         android:id="@+id/textView_word"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?android:attr/selectableItemBackground"
         android:gravity="center"/>
 
-    <Button
-        android:id="@+id/btnFavarite"
-        android:layout_width="60dp"
-        android:layout_height="match_parent"
-        android:background="#d9dee4"
-        android:text="收藏"
-        android:textColor="@android:color/white"/>
+    <!--<Button-->
+        <!--android:id="@+id/btnFavarite"-->
+        <!--android:layout_width="80dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#d9dee4"-->
+        <!--android:text="收藏"-->
+        <!--android:textColor="@android:color/white"/>-->
 
     <Button
         android:id="@+id/btnDelete"
-        android:layout_width="60dp"
+        android:layout_width="80dp"
         android:layout_height="match_parent"
-        android:background="@color/color_icon"
-        android:text="删除"
+        android:background="#EF6A6A"
+        android:text="移出"
         android:textColor="@android:color/white"/>
 
 </com.mcxtzhang.swipemenulib.SwipeMenuLayout>

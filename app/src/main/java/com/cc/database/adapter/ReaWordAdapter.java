@@ -30,7 +30,7 @@ public class ReaWordAdapter extends RecyclerView.Adapter<ReaWordAdapter.ViewHold
             super(view);
             itemView = view;
             textView_word = (TextView) view.findViewById(R.id.textView_word);
-            favoriteButton = (Button) view.findViewById(R.id.btnFavarite);
+//            favoriteButton = (Button) view.findViewById(R.id.btnFavarite);
             deleteButton = (Button) view.findViewById(R.id.btnDelete);
         }
     }
@@ -58,14 +58,14 @@ public class ReaWordAdapter extends RecyclerView.Adapter<ReaWordAdapter.ViewHold
 //        });
 
         // 文本框的点击事件
-        holder.favoriteButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-//                int position = holder.getAdapterPosition();
-            }
-        });
+//        holder.favoriteButton.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View view)
+//            {
+////                int position = holder.getAdapterPosition();
+//            }
+//        });
 
         holder.deleteButton.setOnClickListener(new View.OnClickListener()
         {
